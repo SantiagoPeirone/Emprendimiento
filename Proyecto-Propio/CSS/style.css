@@ -1,68 +1,545 @@
-/* Estilos para el sitio web */
+/* Importación de fuentes modernas */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
 
-/*body*/
+/* Variables CSS para diseño consistente */
+:root {
+    --primary-color: #2563eb;
+    --primary-dark: #1e40af;
+    --secondary-color: #10b981;
+    --accent-color: #f59e0b;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-light: #f9fafb;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f3f4f6;
+    --bg-dark: #111827;
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-body{
-    font-family: Arial, sans-serif;
+/* Reset y estilos base */
+* {
     margin: 0;
     padding: 0;
-    background-color: #d3d1d1;
-   }
+    box-sizing: border-box;
+}
 
+html {
+    scroll-behavior: smooth;
+}
 
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    background-attachment: fixed;
+}
 
-/*header*/
-   header {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-  /*nav*/
-  nav {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    text-align: center;
-  }
+/* Header mejorado con alta legibilidad */
+header {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-lg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: var(--transition);
+    border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+}
 
-  nav ul {
-    list-style-type: none;
+header.scrolled {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Navegación moderna con alto contraste */
+nav {
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  nav li {
-    float: left;
-  }
-  
-  nav li a {
+    background: transparent;
+}
+
+nav li {
+    float: none;
+    margin: 0;
+}
+
+nav li a {
     display: block;
-    color: white;
+    color: var(--text-primary);
     text-align: center;
-    padding: 14px 16px;
+    padding: 24px 28px;
     text-decoration: none;
-  }
-  
-  nav li a:hover {
-    background-color: #111;
-  }
-  
-  /*main*/
-  
-  main {
-    padding: 20px;
-  }
-  
-  /*footer*/
+    font-weight: 600;
+    font-size: 16px;
+    position: relative;
+    transition: var(--transition);
+    border-radius: 8px;
+    margin: 8px 6px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+}
 
-  footer {
-    background-color: #333;
+nav li a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--primary-color);
+    transition: var(--transition);
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+nav li a:hover {
     color: white;
-    padding: 10px;
+    background: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+nav li a:hover::before {
+    width: 90%;
+    background: white;
+}
+
+/* Main content */
+main {
+    padding: 0;
+    margin-top: 100px;
+}
+
+/* Secciones con mejor contraste */
+section {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+section:nth-child(even) {
+    background: rgba(255, 255, 255, 0.98);
+}
+
+section:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* Logo image styling */
+.logo-image {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 24px;
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+/* Sección Hero con mejor legibilidad */
+#Inicio {
     text-align: center;
-  }
+    padding: 140px 0 120px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+    position: relative;
+}
+
+#Inicio::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(37,99,235,0.1)" stroke-width="0.8"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.4;
+}
+
+#Inicio h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+#Inicio h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 36px;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+    position: relative;
+    z-index: 1;
+}
+
+#Inicio p {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    max-width: 650px;
+    margin: 0 auto 48px;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+}
+
+/* Botones de llamada a la acción mejorados */
+.cta-buttons {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+    position: relative;
+    z-index: 1;
+}
+
+.btn {
+    padding: 16px 36px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 17px;
+    text-decoration: none;
+    display: inline-block;
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: var(--shadow-lg);
+    border: 2px solid transparent;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Secciones de contenido con mejor tipografía */
+section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+section p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Sección de servicios */
+#Servicios ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 800px;
+    margin: 48px auto 0;
+    padding: 0 20px;
+}
+
+#Servicios li {
+    background: white;
+    padding: 28px 24px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    transition: var(--transition);
+    border: 2px solid rgba(37, 99, 235, 0.1);
+    position: relative;
+    overflow: hidden;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#Servicios li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: var(--transition);
+}
+
+#Servicios li:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
+}
+
+#Servicios li:hover::before {
+    transform: scaleX(1);
+}
+
+#Servicios li {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+}
+
+/* Footer moderno */
+footer {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    padding: 80px 0 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+}
+
+.footer-contenido {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 48px;
+}
+
+.footer-section h3 {
+    color: var(--text-light);
+    margin-bottom: 24px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.footer-section p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    text-align: left;
+    font-weight: 400;
+}
+
+.enlace-footer {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    transition: var(--transition);
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.enlace-footer:hover {
+    color: var(--primary-color);
+    transform: translateX(8px);
+}
+
+.redes-sociales {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.icono-red {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: 50%;
+    transition: var(--transition);
+    font-size: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.icono-red:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.enlaces-rapidos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.enlaces-rapidos .enlace-footer {
+    padding: 8px 0;
+}
+
+.derechos {
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 8px;
+    }
+    
+    nav li a {
+        padding: 12px 16px;
+        margin: 2px;
+        font-size: 14px;
+    }
+    
+    #Inicio h1 {
+        font-size: 2.8rem;
+    }
+    
+    #Inicio h3 {
+        font-size: 1.3rem;
+    }
+    
+    section {
+        padding: 80px 0;
+    }
+    
+    section h2 {
+        font-size: 2.2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 220px;
+        text-align: center;
+    }
+    
+    #Servicios ul {
+        grid-template-columns: 1fr;
+        padding: 0 16px;
+        gap: 16px;
+        max-width: 600px;
+    }
+    
+    #Servicios li {
+        padding: 20px 16px;
+        min-height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    #Inicio h1 {
+        font-size: 2.2rem;
+    }
+    
+    #Servicios ul {
+        grid-template-columns: 1fr;
+        padding: 0 16px;
+        gap: 16px;
+    }
+    
+    #Servicios li {
+        padding: 20px 16px;
+        min-height: 120px;
+    }
+    
+    .footer-contenido {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
